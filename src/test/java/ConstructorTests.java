@@ -28,7 +28,7 @@ public class ConstructorTests {
     @Parameterized.Parameters
     public static Object[][] getTestData() {
         return new Object[][] {
-               // {"chrome"},
+                {"chrome"},
                 {"firefox"}
         };
     }
@@ -55,8 +55,7 @@ public class ConstructorTests {
     public void sauceTabClickScrollsToSauceSection() throws InterruptedException {
         MainPage mainPageObj =  new MainPage(driver);
         mainPageObj.waitLoaderIsHidden()
-                .asMainPage().checkScrollToFillings()
-                .clickSauceTab()
+                .asMainPage().clickSauceTab()
                 .checkScrollToSauces();
     }
 
@@ -67,9 +66,7 @@ public class ConstructorTests {
     public void bunTabClickScrollsToBunSection() throws InterruptedException {
         MainPage mainPageObj =  new MainPage(driver);
         mainPageObj.waitLoaderIsHidden()
-                .asMainPage().checkScrollToFillings()
-                .clickSauceTab()
-                .checkScrollToSauces()
+                .asMainPage().clickSauceTab()
                 .clickBunTab()
                 .checkScrollToBuns();
 

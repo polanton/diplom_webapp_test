@@ -34,13 +34,17 @@ public class BasePage {
     private final By loader = By.className("Modal_modal_overlay__x2ZCr");
 
     public BasePage waitLoaderIsHidden() {
-        new WebDriverWait(driver, Duration.ofSeconds(25)).until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(loader)));
-        new WebDriverWait(driver, Duration.ofSeconds(25)).until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(loader)));
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(loader)));
+        return this;
+    }
+
+    public BasePage waitElementIsVisible(By by) {
+        new WebDriverWait(driver, Duration.ofSeconds(7)).until(ExpectedConditions.visibilityOfElementLocated(by));
         return this;
     }
 
     public BasePage waitButtonIsAvailable(By by) {
-        new WebDriverWait(driver, Duration.ofSeconds(37)).until(elementToBeClickable(by));
+        new WebDriverWait(driver, Duration.ofSeconds(7)).until(elementToBeClickable(by));
         return this;
     }
 

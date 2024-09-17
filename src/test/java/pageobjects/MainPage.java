@@ -28,12 +28,12 @@ public class MainPage extends BasePage {
     private final By sauce = By.xpath("//p[@class = 'BurgerIngredient_ingredient__text__yp3dH' and contains(text(),'Соус')]/parent::a");
     private final By filling = By.xpath("//p[@class = 'BurgerIngredient_ingredient__text__yp3dH' and not(contains(text(),'булка') or contains(text(),'Соус'))]/parent::a");
 
-    private final By notClickedBunTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Булки']/parent::div[@class=%s]",NOTCLICKED_TAB_CLASSNAME));
-    private final By clickedBunTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Булки']/parent::div[@class=%s]",CLICKED_TAB_CLASSNAME));
-    private final By notClickedSauceTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Соусы']/parent::div[@class=%s]",NOTCLICKED_TAB_CLASSNAME));
-    private final By clickedSauceTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Соусы']/parent::div[@class=%s]",CLICKED_TAB_CLASSNAME));
-    private final By notClickedFillingsTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Начинки']/parent::div[@class=%s]",NOTCLICKED_TAB_CLASSNAME));
-    private final By clickedFillingsTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Начинки']/parent::div[@class=%s]",CLICKED_TAB_CLASSNAME));
+    private final By notClickedBunTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Булки']/parent::div[@class='%s']",NOTCLICKED_TAB_CLASSNAME));
+    private final By clickedBunTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Булки']/parent::div[@class='%s']",CLICKED_TAB_CLASSNAME));
+    private final By notClickedSauceTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Соусы']/parent::div[@class='%s']",NOTCLICKED_TAB_CLASSNAME));
+    private final By clickedSauceTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Соусы']/parent::div[@class='%s']",CLICKED_TAB_CLASSNAME));
+    private final By notClickedFillingsTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Начинки']/parent::div[@class='%s']",NOTCLICKED_TAB_CLASSNAME));
+    private final By clickedFillingsTab = By.xpath(String.format("//span[@class = 'text text_type_main-default' and text() = 'Начинки']/parent::div[@class='%s']",CLICKED_TAB_CLASSNAME));
     private final By ingredient = By.xpath(".//a[@class='BurgerIngredient_ingredient__1TVf6 ml-4 mr-4 mb-8']");
     private final By bunSectionHeader = By.xpath(".//h2[@class='text text_type_main-medium mb-6 mt-10' and text()='Булки']");
     private final By sauceSectionHeader = By.xpath(".//h2[@class='text text_type_main-medium mb-6 mt-10' and text()='Соусы']");
@@ -46,9 +46,23 @@ public class MainPage extends BasePage {
 
 
 
-    public MainPage clickBunTab(){driver.findElement(notClickedBunTab).click(); return this;}
-    public MainPage clickSauceTab(){driver.findElement(notClickedSauceTab).click(); return this;}
-    public MainPage clickFillingsTab(){driver.findElement(notClickedFillingsTab).click(); return this;}
+    public MainPage clickBunTab(){
+        waitElementIsVisible(notClickedBunTab);
+        driver.findElement(notClickedBunTab).click();
+        waitElementIsVisible(clickedBunTab);
+        return this;
+    }
+    public MainPage clickSauceTab(){
+        waitElementIsVisible(notClickedSauceTab);
+        driver.findElement(notClickedSauceTab).click();
+        waitElementIsVisible(clickedSauceTab);
+        return this;
+    }
+    public MainPage clickFillingsTab(){
+        waitElementIsVisible(notClickedFillingsTab);
+        driver.findElement(notClickedFillingsTab).click();
+        waitElementIsVisible(clickedFillingsTab);
+        return this;}
 
     public BasePage clickPersonalAccountButton() {
         waitButtonIsAvailable(personalAccountButton);
