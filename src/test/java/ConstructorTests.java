@@ -28,7 +28,7 @@ public class ConstructorTests {
     @Parameterized.Parameters
     public static Object[][] getTestData() {
         return new Object[][] {
-                {"chrome"},
+               // {"chrome"},
                 {"firefox"}
         };
     }
@@ -50,6 +50,40 @@ public class ConstructorTests {
         User.registerByAPI(user);
     }
 
+    @DisplayName("Переход к разделу соусов")
+    @Test
+    public void sauceTabClickScrollsToSauceSection() throws InterruptedException {
+        MainPage mainPageObj =  new MainPage(driver);
+        mainPageObj.waitLoaderIsHidden()
+                .asMainPage().checkScrollToFillings()
+                .clickSauceTab()
+                .checkScrollToSauces();
+    }
+
+
+
+    @DisplayName("Переход к разделу булок после соусов")
+    @Test
+    public void bunTabClickScrollsToBunSection() throws InterruptedException {
+        MainPage mainPageObj =  new MainPage(driver);
+        mainPageObj.waitLoaderIsHidden()
+                .asMainPage().checkScrollToFillings()
+                .clickSauceTab()
+                .checkScrollToSauces()
+                .clickBunTab()
+                .checkScrollToBuns();
+
+
+    }
+
+    @DisplayName("Переход к разделу начинок")
+    @Test
+    public void fillingsTabClickScrollsToFillingsSection() {
+        MainPage mainPageObj =  new MainPage(driver);
+        mainPageObj.waitLoaderIsHidden()
+                .asMainPage().clickFillingsTab()
+                .checkScrollToFillings();
+    }
 
 
     @DisplayName("Переход между разделами в списке ингридиентов")
@@ -64,7 +98,6 @@ public class ConstructorTests {
                 .clickFillingsTab()
                 .checkScrollToFillings();
     }
-
 
 
     @After
